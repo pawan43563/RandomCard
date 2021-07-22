@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 30%;
+    margin: 20px auto;
+}
+
+.btn{
+    margin:20px auto; 
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.card-img-top{
+    height: 200px;
+}
+.card-title,.card-text{
+    text-align: center;
+    padding:5px;
+}
