@@ -29,7 +29,7 @@ const addEmployeetoDom=()=>{
 
 
 displayEmployee=(emp)=>{
-    divContainer.innerHTML+=emp;
+    divContainer.innerHTML=emp;
 }
 
  
