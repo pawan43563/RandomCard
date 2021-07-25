@@ -1,6 +1,6 @@
 let visitedEmployee=[]
 const divContainer=document.querySelector(".container");
-
+const history=document.getElementById("historylog")
 
 const random_card=(team)=>{
     if (visitedEmployee.length===team.length){
@@ -23,24 +23,44 @@ const addEmployeetoDom=()=>{
     // create markup
     employeemarkup=createDiv(employee)
     //  add markup to dom
-    displayEmployee(employeemarkup)
+    displayEmployee(employeemarkup,employee)
 }
 
 
 
-displayEmployee=(emp)=>{
-    divContainer.innerHTML=emp;
+displayEmployee=(emp,employee)=>{
+    if(visitedEmployee[visitedEmployee.length-2]){
+        divContainer.innerHTML=emp+`<table style="border:2px solid black;">
+        <tr>
+        <th colspan="3" style="text-align:center">Last Employee Selected</th>
+        </tr>
+          <tr>
+            <th >EmployeeId</th>
+            <th>Name</th>
+            <th>Company Name</th>
+          </tr>
+          <tr>
+            <td>${visitedEmployee[visitedEmployee.length-2]}</td>
+            <td>${employee["name"]}</td>
+            <td>${employee["company"]}</td>
+          </tr>
+        
+        </table>`;
+    }else{
+        divContainer.innerHTML=emp
+    }
 }
+
 
  
 createDiv=(emp)=>{    
-    return ` <div class="card" style="width: 18rem;border:2px solid black;border-radius:10px;margin-top:30px;">
+    return ` <div class="card" style="width: 18rem;margin-top:30px;border:2px solid black;">
     <div class="card-body">
-    <img class="card-img-top" src="https://niravkpatel28.github.io/github-image-repository/profiles/image-pexels-photo-2379004.jpeg" alt="Card image cap" > 
+    <img class="card-img-top" src="${emp["image"]}" alt="Card image cap" > 
       <h3 class="card-title">${emp["name"]}</h3>
       <p class="card-text">${emp["company"]}</p>
     </div>
-  </div> `
+  </div>`
 }
 
 const modal=document.getElementById("exampleModal");
@@ -67,4 +87,22 @@ deleteCard=()=>{
 
 const reset=document.getElementById("reset");
 reset.addEventListener('click',confirmDelete);
+let theme="light";
+function DarkMode(){
+    const modal=document.querySelector(".modal");
+    const body=document.getElementsByTagName("body")[0];
+    const card=document.getElementsByClassName("container")[0];
+    if(theme=="light"){
+        body.classList.add("dark")
+        card.classList.add("darkcard")
+        modal.classList.add("darkmodal")
+        theme="dark";
+    }else{
+        body.classList.remove("dark")
+        card.classList.remove("darkcard")
+        theme="light";
+    }
+    
 
+   
+}
