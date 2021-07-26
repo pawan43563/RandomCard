@@ -1,18 +1,19 @@
 let visitedEmployee=[]
 const divContainer=document.querySelector(".container");
 const history=document.getElementById("historylog")
-
+let previousEmployee=[]
 const random_card=(team)=>{
     if (visitedEmployee.length===team.length){
         divContainer.innerHTML=""
         visitedEmployee=[]
+        previousEmployee=[]
     }
     // if employee in visitedemlpoyee than again loop until it is not
     employee=team[Math.floor(Math.random()*team.length)]
     while (visitedEmployee.includes(employee["empid"])){
         employee=team[Math.floor(Math.random()*team.length)]
     }
-    
+    previousEmployee.push(employee)
     visitedEmployee.push(employee["empid"]);
     return employee
 }
@@ -29,6 +30,7 @@ const addEmployeetoDom=()=>{
 
 
 displayEmployee=(emp,employee)=>{
+    console.log(employee);
     if(visitedEmployee[visitedEmployee.length-2]){
         divContainer.innerHTML=emp+`<table style="border:2px solid black;">
         <tr>
@@ -41,8 +43,8 @@ displayEmployee=(emp,employee)=>{
           </tr>
           <tr>
             <td>${visitedEmployee[visitedEmployee.length-2]}</td>
-            <td>${employee["name"]}</td>
-            <td>${employee["company"]}</td>
+            <td>${previousEmployee[previousEmployee.length-2]["name"]}</td>
+            <td>${previousEmployee[previousEmployee.length-2]["company"]}</td>
           </tr>
         
         </table>`;
